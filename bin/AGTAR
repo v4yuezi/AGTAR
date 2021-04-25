@@ -2082,7 +2082,7 @@ def multi_exon(len_strand_left_list,strand_left_list,read_n_strand,strand,samfil
 
 
 		
-def Genetic_algorithm(frag_count_all,list_unknowm_junc_strand,list_dict_exon_strand,strand,dict_gene_strand_knowntname_temp_big,dict_exon_cov_strand,dict_exon_count_strand,dict_exon_actual_cov_strand,samfile_name,CHR,PopulationC,maxEG):
+def Genetic_algorithm(frag_count_all,list_unknowm_junc_strand,list_dict_exon_strand,strand,dict_gene_strand_knowntname_temp_big,dict_exon_cov_strand,dict_exon_count_strand,dict_exon_actual_cov_strand,samfile_name,CHR,PopulationC,maxEG,cross,muta):
 
 	
 	def sum(fit_value):
@@ -2139,8 +2139,8 @@ def Genetic_algorithm(frag_count_all,list_unknowm_junc_strand,list_dict_exon_str
 
 			pop_size = PopulationC		                  # 种群数量
 			chrom_length =len(dict_gene_strand_knowntname_temp)#染色体长度
-			pc = 0.7			                  # 交配概率
-			pm = 0.05                                 # 变异概率
+			pc = cross			                  # 交配概率
+			pm = muta                                 # 变异概率
 			results = [[]]		                  # 存储每一代的最优解，N个二元组
 			fit_value = []		                  # 个体适应度
 			obj_value=[]
@@ -2403,8 +2403,8 @@ def Genetic_algorithm(frag_count_all,list_unknowm_junc_strand,list_dict_exon_str
 
 			pop_size = PopulationC		                  # 种群数量
 			chrom_length =len(dict_gene_strand_knowntname_temp)#染色体长度
-			pc = 0.7			                  # 交配概率
-			pm = 0.05                                 # 变异概率
+			pc = cross			                  # 交配概率
+			pm = muta                                 # 变异概率
 			results = [[]]		                  # 存储每一代的最优解，N个二元组
 			fit_value = []		                  # 个体适应度
 			obj_value=[]
@@ -3194,8 +3194,8 @@ def Genetic_algorithm(frag_count_all,list_unknowm_junc_strand,list_dict_exon_str
 
 								pop_size = PopulationC		                  # 种群数量
 								chrom_length =len(dict_gene_strand_knowntname_temp)#染色体长度
-								pc = 0.7			                  # 交配概率
-								pm = 0.05                                 # 变异概率
+								pc = cross			                  # 交配概率
+								pm = muta                                 # 变异概率
 								results = [[]]		                  # 存储每一代的最优解，N个二元组
 								fit_value = []		                  # 个体适应度
 								obj_value=[]
@@ -3389,8 +3389,8 @@ def Genetic_algorithm(frag_count_all,list_unknowm_junc_strand,list_dict_exon_str
 
 					pop_size = PopulationC	                  # 种群数量
 					chrom_length =len(dict_gene_strand_knowntname_temp)#染色体长度
-					pc = 0.7			                  # 交配概率
-					pm = 0.05                                 # 变异概率
+					pc = cross			                  # 交配概率
+					pm = muta                                 # 变异概率
 					results = [[]]		                  # 存储每一代的最优解，N个二元组
 					fit_value = []		                  # 个体适应度
 					obj_value=[]
@@ -3651,8 +3651,8 @@ def Genetic_algorithm(frag_count_all,list_unknowm_junc_strand,list_dict_exon_str
 					
 							pop_size = PopulationC		                  # 种群数量
 							chrom_length =len(dict_gene_strand_knowntname_temp)#染色体长度
-							pc = 0.7			                  # 交配概率
-							pm = 0.05                                 # 变异概率
+							pc = cross			                  # 交配概率
+							pm = muta                                 # 变异概率
 							results = [[]]		                  # 存储每一代的最优解，N个二元组
 							fit_value = []		                  # 个体适应度
 							obj_value=[]
@@ -3956,7 +3956,7 @@ def Genetic_algorithm(frag_count_all,list_unknowm_junc_strand,list_dict_exon_str
 
 
 
-def func(frag_count_all,CHR,seq_end_type,gtf_file_name,gtf_file,max_intron_length,min_intron_length,min_junc_cov,min_anchor_length,dict_minjunc_fold,samfile_name,juncfile,insfile,PopulationC,maxEG):
+def func(frag_count_all,CHR,seq_end_type,gtf_file_name,gtf_file,max_intron_length,min_intron_length,min_junc_cov,min_anchor_length,dict_minjunc_fold,samfile_name,juncfile,insfile,PopulationC,maxEG,cross,muta):
 	samfile = pysam.AlignmentFile(samfile_name,'rb')
 	global dict_exon_count_unsigned_singleexon
 	
@@ -4657,13 +4657,13 @@ def func(frag_count_all,CHR,seq_end_type,gtf_file_name,gtf_file,max_intron_lengt
 	list_dict_gene_minus_knowntname=[]
 	list_dict_gene_strand_knowntname=[]
 	if gtf_file_name:
-		list_dict_gene_minus_knowntname=Genetic_algorithm(frag_count_all=frag_count_all,list_unknowm_junc_strand=list_unknowm_junc_minus,list_dict_exon_strand=list_dict_exon_minus,strand='-',dict_gene_strand_knowntname_temp_big=dict_gene_minus_knowntname_temp_big,dict_exon_cov_strand=dict_exon_cov_minus,dict_exon_count_strand=dict_exon_count_minus,dict_exon_actual_cov_strand=dict_exon_actual_cov_minus,samfile_name=samfile_name,CHR=CHR,PopulationC=PopulationC,maxEG=maxEG)	
+		list_dict_gene_minus_knowntname=Genetic_algorithm(frag_count_all=frag_count_all,list_unknowm_junc_strand=list_unknowm_junc_minus,list_dict_exon_strand=list_dict_exon_minus,strand='-',dict_gene_strand_knowntname_temp_big=dict_gene_minus_knowntname_temp_big,dict_exon_cov_strand=dict_exon_cov_minus,dict_exon_count_strand=dict_exon_count_minus,dict_exon_actual_cov_strand=dict_exon_actual_cov_minus,samfile_name=samfile_name,CHR=CHR,PopulationC=PopulationC,maxEG=maxEG,cross=cross,muta=muta)	
 		list_dict_gene_minus_knowntname_temp=[]
 		list_dict_gene_minus_knowntname_temp=list_dict_gene_minus_knowntname
 	else:
 		list_unknowm_junc_minus=[]
 		dict_gene_minus_knowntname_temp_big=[]
-		list_dict_gene_minus_knowntname=Genetic_algorithm(frag_count_all=frag_count_all,list_unknowm_junc_strand=list_unknowm_junc_minus,list_dict_exon_strand=list_dict_exon_minus,strand='-',dict_gene_strand_knowntname_temp_big=dict_gene_minus_knowntname_temp_big,dict_exon_cov_strand=dict_exon_cov_minus,dict_exon_count_strand=dict_exon_count_minus,dict_exon_actual_cov_strand=dict_exon_actual_cov_minus,samfile_name=samfile_name,CHR=CHR,PopulationC=PopulationC,maxEG=maxEG)	
+		list_dict_gene_minus_knowntname=Genetic_algorithm(frag_count_all=frag_count_all,list_unknowm_junc_strand=list_unknowm_junc_minus,list_dict_exon_strand=list_dict_exon_minus,strand='-',dict_gene_strand_knowntname_temp_big=dict_gene_minus_knowntname_temp_big,dict_exon_cov_strand=dict_exon_cov_minus,dict_exon_count_strand=dict_exon_count_minus,dict_exon_actual_cov_strand=dict_exon_actual_cov_minus,samfile_name=samfile_name,CHR=CHR,PopulationC=PopulationC,maxEG=maxEG,cross=cross,muta=muta)	
 		list_dict_gene_minus_knowntname_temp=[]
 		list_dict_gene_minus_knowntname_temp=list_dict_gene_minus_knowntname
 		
@@ -4672,13 +4672,13 @@ def func(frag_count_all,CHR,seq_end_type,gtf_file_name,gtf_file,max_intron_lengt
 	list_dict_gene_plus_knowntname=[]
 	list_dict_gene_strand_knowntname=[]
 	if gtf_file_name:
-		list_dict_gene_plus_knowntname=Genetic_algorithm(frag_count_all=frag_count_all,list_unknowm_junc_strand=list_unknowm_junc_plus,list_dict_exon_strand=list_dict_exon_plus,strand='+',dict_gene_strand_knowntname_temp_big=dict_gene_plus_knowntname_temp_big,dict_exon_cov_strand=dict_exon_cov_plus,dict_exon_count_strand=dict_exon_count_plus,dict_exon_actual_cov_strand=dict_exon_actual_cov_plus,samfile_name=samfile_name,CHR=CHR,PopulationC=PopulationC,maxEG=maxEG)
+		list_dict_gene_plus_knowntname=Genetic_algorithm(frag_count_all=frag_count_all,list_unknowm_junc_strand=list_unknowm_junc_plus,list_dict_exon_strand=list_dict_exon_plus,strand='+',dict_gene_strand_knowntname_temp_big=dict_gene_plus_knowntname_temp_big,dict_exon_cov_strand=dict_exon_cov_plus,dict_exon_count_strand=dict_exon_count_plus,dict_exon_actual_cov_strand=dict_exon_actual_cov_plus,samfile_name=samfile_name,CHR=CHR,PopulationC=PopulationC,maxEG=maxEG,cross=cross,muta=muta)
 		list_dict_gene_plus_knowntname_temp=[]
 		list_dict_gene_plus_knowntname_temp=list_dict_gene_plus_knowntname
 	else:
 		list_unknowm_junc_plus=[]
 		dict_gene_plus_knowntname_temp_big=[]
-		list_dict_gene_plus_knowntname=Genetic_algorithm(frag_count_all=frag_count_all,list_unknowm_junc_strand=list_unknowm_junc_plus,list_dict_exon_strand=list_dict_exon_plus,strand='+',dict_gene_strand_knowntname_temp_big=dict_gene_plus_knowntname_temp_big,dict_exon_cov_strand=dict_exon_cov_plus,dict_exon_count_strand=dict_exon_count_plus,dict_exon_actual_cov_strand=dict_exon_actual_cov_plus,samfile_name=samfile_name,CHR=CHR,PopulationC=PopulationC,maxEG=maxEG)	
+		list_dict_gene_plus_knowntname=Genetic_algorithm(frag_count_all=frag_count_all,list_unknowm_junc_strand=list_unknowm_junc_plus,list_dict_exon_strand=list_dict_exon_plus,strand='+',dict_gene_strand_knowntname_temp_big=dict_gene_plus_knowntname_temp_big,dict_exon_cov_strand=dict_exon_cov_plus,dict_exon_count_strand=dict_exon_count_plus,dict_exon_actual_cov_strand=dict_exon_actual_cov_plus,samfile_name=samfile_name,CHR=CHR,PopulationC=PopulationC,maxEG=maxEG,cross=cross,muta=muta)	
 		list_dict_gene_plus_knowntname_temp=[]
 		list_dict_gene_plus_knowntname_temp=list_dict_gene_plus_knowntname
 
@@ -4831,12 +4831,15 @@ parser.add_option('-G','--GTF',nargs=1,dest="GTF",action="store",help="Use the r
 parser.add_option('-p','--num-threads',nargs=1,type="int",default=1,dest="num_threads",action="store",help="Specify the number of processes to use for transcript assembly. (default:1)")
 parser.add_option('-c','--junction',nargs=1,dest="junction",action="store",help="The junction file output by the processsam module(must be given).")
 parser.add_option('-t','--instance',nargs=1,dest="instance",action="store",help="The instance file output by the processsam module(must be given).")
-parser.add_option('-n','--population-capacity',nargs=1,type="int",default=500,dest="population_capacity",action="store",help="Set population capacity of genetic algorithm.(default:500)")
-parser.add_option('-m','--max-evolutionary-generation',nargs=1,type="int",default=500,dest="max_evolutionary_generation",action="store",help="Set the maximum evolutionary generation number of genetic algorithm.(default:500)")
+parser.add_option('-n','--population-capacity',nargs=1,type="int",default=100,dest="population_capacity",action="store",help="Set population capacity of genetic algorithm.(default:100)")
+parser.add_option('-m','--max-evolutionary-generation',nargs=1,type="int",default=100,dest="max_evolutionary_generation",action="store",help="Set the maximum evolutionary generation number of genetic algorithm.(default:100)")
 parser.add_option('-j','--junc',nargs=1,type="int",default=1,dest="junc",action="store",help="Set the minimum junction coverage. (default:1)")
 parser.add_option('-a','--min-anchor',nargs=1,type="int",default=8,dest='anchor',action="store",help="Set the minimum anchor length on each side of the junction. (default:8)")
 parser.add_option('-I','--max-intron-length',nargs=1,type="int",default=200000,dest="max_intron_length",action="store",help="Set the maximum length of the unannotated introns. (default:200000)")
 parser.add_option('-i','--min-intron-length',nargs=1,type="int",default=5,dest="min_intron_length",action="store",help="Set the minimum length of the unannotated introns. (default:5)")
+parser.add_option('-C','--Crossover-probability',nargs=1,type="float",default=0.7,dest="Crossover_probability",action="store",help="Set the initial crossover probability.(default:0.7)")
+parser.add_option('-M','--Mutation-probability',nargs=1,type="float",default=0.05,dest="Mutation_probability",action="store",help="Set the initial mutation probability.(default:0.05)")
+
 
 
 (options, args) = parser.parse_args()
@@ -4866,6 +4869,9 @@ max_intron_length=options.max_intron_length
 min_intron_length=options.min_intron_length
 min_junc_cov=options.junc
 min_anchor_length=options.anchor
+cross=options.Crossover_probability
+muta=options.Mutation_probability
+
 
 dict_minjunc_fold={1:9,2:9,3:8,4:8,5:7,6:7,7:6,8:6,9:5,10:5}
 for i in range(11,51):
@@ -5014,15 +5020,17 @@ threadNum = options.num_threads
 
 PopulationC=options.population_capacity
 
-
 maxEG=options.max_evolutionary_generation
+
+cross=options.Crossover_probability
+muta=options.Mutation_probability
 
 
 
 pool = multiprocessing.Pool(threadNum)
 for CHR in CHRS_new:
 	thread_list=[]
-	rdr = pool.apply_async(func=func,args=(frag_count_all,CHR,seq_end_type,gtf_file_name,gtf_file,max_intron_length,min_intron_length,min_junc_cov,min_anchor_length,dict_minjunc_fold,args[0],juncfile,insfile,PopulationC,maxEG)) 
+	rdr = pool.apply_async(func=func,args=(frag_count_all,CHR,seq_end_type,gtf_file_name,gtf_file,max_intron_length,min_intron_length,min_junc_cov,min_anchor_length,dict_minjunc_fold,args[0],juncfile,insfile,PopulationC,maxEG,cross,muta)) 
 
 gtf_file_new=[]
 for i in gtf_file:
@@ -5033,7 +5041,7 @@ del gtf_file
 gc.collect()
 for CHR in CHRS_new2:
 	thread_list=[]
-	rdr = pool.apply_async(func=func,args=(frag_count_all,CHR,seq_end_type,gtf_file_name,gtf_file_new,max_intron_length,min_intron_length,min_junc_cov,min_anchor_length,dict_minjunc_fold,args[0],juncfile,insfile,PopulationC,maxEG)) 
+	rdr = pool.apply_async(func=func,args=(frag_count_all,CHR,seq_end_type,gtf_file_name,gtf_file_new,max_intron_length,min_intron_length,min_junc_cov,min_anchor_length,dict_minjunc_fold,args[0],juncfile,insfile,PopulationC,maxEG,cross,muta)) 
 
 pool.close()
 pool.join()
