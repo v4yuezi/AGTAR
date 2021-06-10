@@ -116,8 +116,6 @@ Set the initial crossover probability.(default:0.7)
    
 Set the initial mutation probability.(default:0.05)
 
-#The following are the parameters of QuaPra£¨enabled when a genome annotation file is given£©:
-
 -j JUNC, --junc=JUNC                   
     
 Set the minimum junction coverage. (default:1)
